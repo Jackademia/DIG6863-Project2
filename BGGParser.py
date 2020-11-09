@@ -1,7 +1,18 @@
+#!/usr/bin/env python
+# coding=utf-8-
 import csv
+import cgi
+#Import cgi trackback module for debugging
+import cgitb
+# Enable debugging
+cgitb.enable()
 
+print "Content-Type: text/html; charset=utf-8\n"
 
+print "<html><head><title>WorkPls</title>\n</head><body>\n"
 
+print "<h1>Hello world please hear me. I am still alive</h1>\n"
+print "</body></html>"
 #reads in a CSV file as a dictionary using the csv module's DictReader
 def readCollectionCSV(fileName):
     bggCSV = csv.DictReader(fileName)
@@ -22,8 +33,6 @@ def myAvgRating(DReader):
     return total/entries
 
 
-def getDictColumnValues(columnName):
-    print("columnName TODO")
 
 #returns true if overrated, false if equal or underrated when compared to the average bgg rating
 def compareRatings(DReader):
@@ -33,12 +42,7 @@ def compareRatings(DReader):
 
     return gameDict
 
-#returns a dictionary that only has the object name, rating, and average bgg rating
-def getSmallDict(DReader):
-    gameDict = dict()
-    for game in DReader:
-        gameDict[game['objectname']] = dict(rating = game['rating'], average = game['average'],weight = game['avgweight'], rank = game['rank'] )
-    return gameDict
+
 def getOverrated(gameDict):
     overList = []
     for game in gameDict:
@@ -52,6 +56,21 @@ def getUnderrated(gameDict):
         if not gameDict[game]:
             underList.append(game)
     return underList
+def printRatedLists(gameList):
+    stringy = ""
+    for game in gameList:
+        stringy+= game +"<br> "
+    return stringy
+
+### Tiny data analysis functions here ###
+
+#returns a dictionary that only has the object name, rating, and average bgg rating, complexity weight, and BGG Ranking
+def getSmallDict(DReader):
+    gameDict = dict()
+    for game in DReader:
+        gameDict[game['objectname']] = dict(rating = game['rating'], average = game['average'],weight = game['avgweight'], rank = game['rank'] )
+    return gameDict
+
 
 #Reads in and returns smaller compressed dictionary for ease of access and manipulation
 def readAndCompress(fileName):
@@ -63,14 +82,29 @@ def readAndCompress(fileName):
 
 
 ### Down here is the Main execution zone for testing, etc.###
-def main():
-    tinyData = readAndCompress('collection.csv')
 
+with open('collection.csv') as csvdata:
+    collection = readCollectionCSV(csvdata)
+    form = cgi.FieldStorage()
+
+    item = form.getvalue('op')
+    if item != item:
+        print 'Error - You didn\'t select an operation!'
         
-    print tinyData
+    if item == "myAvg":
+        print '<h1>This is your Average Rating </h1>'
+        print "<p>",myAvgRating(collection),"</p>"
+    elif item == "under":
+        print '<h1>These are games you like less than the community on average. </h1>'
+        print "<p>",printRatedLists(getUnderrated(compareRatings(collection))),"</p>"
+    elif item == "over":
+        print '<h1>These are games you like more than the community on average.</h1>'
+        print "<p>",printRatedLists(getOverrated(compareRatings(collection))),"</p>"
+    elif item == "debug":
+        print "<p> Oh Hi, you've done at thing on the server!</p>"
 
+    print '<a href="index.html">Return Home</a>'
+    print "</body></html>"
 
-main()
-    
 
 

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+      
+        <title>Board Game Geek Collection Calculator</title>
+
+        <link rel="stylesheet" type ="text/css" href="style.css">
+    </head>
+    <body>
+        <div id = "container">
+            <h1>Board Game Geek Collection Calculator</h1>
+            <form name="search" action="BGGParser.py" method="get">
+            <label for="op">Select Operation</label>
+                <select name="op" id="op">
+                    <option value="myAvg">Average Score</option>
+                    <option value="under">Underrated Games</option>
+                    <option value="over">Overrated Games</option>
+                    <option value="debug">Debug</option>
+
+                </select>
+            <input type="submit" value="Submit">
+            </form>
+
+        </div>
+
+
+    
+    </body>
+</html>
