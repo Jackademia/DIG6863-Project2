@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-      
+
         <title>Board Game Geek Collection Calculator</title>
 
         <link rel="stylesheet" type ="text/css" href="style.css">
@@ -24,9 +24,58 @@
             </form>
 
         </div>
+        <div id = "description">
+
+          <p>This project calculates and displays various data by parsing and doing fancy behind the scenes analysis on CSV data that users can retrieve from BoardGameGeek.com. (For the time being this demo uses the Data from my Board Game Geek library.</p>
+<p>Currently there are 3 operations you can run:</p>
+<p>Average Rating: Returns the average of all of your game ratings</p>
+<p>Overrated: Returns games that you rated higher than the community average</p>
+<p>Underrated: Returns games that you rated lower than the community average</p>
+<p>&nbsp;Board Game Geek is a hub for the contemporary board game community and serves a variety of functions, from community forums, news, and a place for people to keep track of their collection and review games they own and play. Board Game Geek is also the largest database of board games with over 300,000 entries. Community members can rate games on a scale from 1-10 which are then averaged and displayed as the community average rating.&nbsp; The BGG FAQ describes their rating system as such<br /> There are three rating systems you will see on the site:</p>
+<ul>
+<li><u>User Rating (aka Your Rating):</u>The rating you gave to the game. When viewing the ratings section of a game page you can see the individual ratings each user gave that particular game. You will see this rating listed in advanced searches and your game collection.</li>
+<li><u>Average Rating:</u>The average of all the ratings from registered BGG users, calculated by adding up the individual ratings and dividing by the number of ratings. You will see this rating listed in advanced searches and near the top of game pages.</li>
+<li><u>BGG Rating (aka Geek Rating):</u>BoardGameGeek's ranking charts are ordered using the BGG Rating, which is based on the Average Rating, but with some alterations. To prevent games with relatively few votes climbing to the top of the BGG Ranks, artificial "dummy" votes are added to the User Ratings. These votes are currently thought to be 100 votes equal to the mid range of the voting scale: 5.5, but the actual algorithm is kept secret to avoid manipulation. The effect of adding these dummy votes is to pull BGG Ratings toward the mid range. Games with a large number of votes will see their BGG Rating alter very little from their Average Rating, but games with relatively few user ratings will see their BGG Rating move considerably toward 5.5. This is known as "Bayesian averaging" and a quick search of both BGG and/or the Web will reveal much discussion on the topic. You will see this rating listed in advanced searches, your game collection, and near the top, most right corner of game pages.</li>
+</ul>
+<p>The&nbsp;<strong>"User Rating"</strong>&nbsp;is arguably the one you will use the most, and the&nbsp;<strong>"Average Rating"</strong>&nbsp;will be the most helpful when looking for a good, well received game. With both of these rating systems you will see a number between 1 and 10. Each user is encouraged to rate games based on their own opinion of the game. As such, different users may assign different meanings to the 1-10 scale. There is no official or set algorithm in place by which users are expected to follow. (<em>BoardGameGeek FAQ | Wiki | BoardGameGeek</em>, n.d.)</p>
+<p>In addition to the Rating system, BGG also classifies games based on their &ldquo;Weight&rdquo; or &ldquo;Complexity&rdquo;:</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "Weight" isn't clearly defined. (For a while game pages described it as a "complexity rating" with a brief mouseover explanation "Community rating for how difficult a game is to understand. Lower rating (lighter weight) means easier.")</p>
+<p>For different people weight means different things, usually a combination of things like:</p>
+<ul>
+<li>How complex/thick is the rulebook?</li>
+<li>How long does it take to play?</li>
+<li>What proportion of time is spent thinking and planning instead of resolving actions?</li>
+<li>How hard and long do you have to think to improve your chance of winning?</li>
+<li>How little luck is in the game?</li>
+<li>How much technical skill (math, reading ahead moves, etc) is necessary?</li>
+<li>How long does it take to learn the rules?</li>
+<li>How many times do you need to play before you feel like you "get" the game?</li>
+</ul>
+<p>Etc...</p>
+<p>(<em>Weight | Wiki | BoardGameGeek</em>, n.d.)</p>
+<p>&nbsp;</p>
+<p>My interest in this stems from thinking about Board Game Geek ratings as a kind of metagame that arose from the communities of play that surround the industry. When I say &ldquo;Metagame&rdquo; I mean to invoke the term as it is introduced by Stephanie Boluk and Patrick LeMieux in their book <em>Metagaming: Playing, Competing, Spectating, Cheating, Trading, Making, and Breaking Videogames</em> (2017). In this book they go about identifying what Metagaming is.</p>
+<p>Metagaming from Boluk and LeMieux</p>
+<p>&ldquo;After all , metagames are not just games about games. They are not simply the game we play in, on around, and through games, or before during, and after games. From the most complex house rules, arcade cultures, competitive tournaments, and virtual economies, to the simple decision to press start, pass the controller, use a player's guide, or even purchase a game in the first place, for all intents and purposes metagames are the only kind of games we play.&rdquo; (Boluk &amp; LeMieux, 2017,p.3)</p>
+<p>&ldquo;...metagaming functions as a broad discourse, a way of playing, thinking and making that transforms autonomous and abstract pieces of software into games and turns players into game designers. Metagames reveal the alternate histories of play that always exist outside the dates, dollars, and demographic data that so often define videogames...&rdquo; (Boluk &amp; LeMieux, 2017,p.9)</p>
+<p>&ldquo;the meaning of metagame emerges within the context of specific practices and historical communities of a given game. Prepositions are to parts of speech as metagames are to games. A signifier for everything occuring before, after, between, and during games as well as everything located in, on, around, and beyond games, the metagame anchors the game in time and space.&rdquo; (Boluk &amp; LeMieux, 2017, p.11)</p>
+<p>&ldquo;... metagaming undermines the authority of videogames as authored objects, packaged products, intellectual property, and copyrighted code by transforming single-player software into materials for making metagames.&rdquo; (Boluk &amp; LeMieux, 2017, p.25)</p>
+<p>&nbsp;</p>
+<p>To summarize this, a Metagame is something that exists in conjunction with, but surrounds a game. The metagame is contextualized by the game, but also is the context the game exists within. Following this the BGG ratings are a type of metagame that players, designers, publishers, and the rest of the board game industry engage in. BGG and Board games become platforms for a specific type of analytical play the outcome of which is reflected on the BGG top 100 and &ldquo;The Hotness&rdquo; which track the popularity of games based on short and long term ratings.&nbsp; This system means that BGG is a platform built to support and supported by analog games. The analysis of this relationship ensures that both players, and the cultural contexts of analog games get included in play and game studies analysis (Bellomy, 2017; Murray, 2020; &Scaron;velch, 2016).</p>
+<p>This forms the theoretical basis of this project which seeks to give people the ability to parse and examine their Board Game Geek Collection data in a playful manner. This includes seeing the average of the ratings they give as well as determining which games they under and over rate compared to the community averages. &nbsp;These are not the only features possible, but as this is a proof of concept, I have limited the tool to these three operations. In the future I also plan to allow users to upload their own BGG database, but for not you will only see results based upon my own BGG user data.</p>
+<p>References</p>
+<p>Bellomy, I. (2017). <em>What Counts: Configuring the Human in Platform Studies</em>. http://analoggamestudies.org/2017/03/what-counts/</p>
+<p><em>BoardGameGeek FAQ | Wiki | BoardGameGeek</em>. (n.d.). Retrieved November 15, 2020, from https://boardgamegeek.com/wiki/page/BoardGameGeek_FAQ</p>
+<p>Boluk, S., &amp; LeMieux, P. (2017). <em>Metagaming: Playing, Competing, Spectating, Cheating, Trading, Making, and Breaking Videogames</em>. U of Minnesota Press.</p>
+<p>Murray, J. (2020). More Than Just the Table: Analog Games as Computational Platforms. <em>International Conference on the Foundations of Digital Games</em>, 1&ndash;4. https://doi.org/10.1145/3402942.3402974</p>
+<p>&Scaron;velch, J. (2016). <em>Platform Studies, Computational Essentialism, and Magic: The Gathering</em>. http://analoggamestudies.org/2016/07/platform-studies-computational-essentialism-and-magic-the-gathering/</p>
+<p><em>Weight | Wiki | BoardGameGeek</em>. (n.d.). Retrieved November 15, 2020, from https://boardgamegeek.com/wiki/page/Weight</p>
+<p>&nbsp;</p>
+
+        </div>
         <p>Words words words </p>
         <a href = "https://github.com/Jackademia/DIG6863-Project2/"> View files on github</a>
 
-    
+
     </body>
 </html>
